@@ -9,6 +9,7 @@ on:
     tags:
       - v*
   pull_request:
+  workflow_dispatch:
 
 env:
   dotnet_sdk_version: '8.0.100-preview.2.23153.6'
