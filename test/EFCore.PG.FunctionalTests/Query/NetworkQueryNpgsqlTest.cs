@@ -14,6 +14,7 @@ namespace Npgsql.EntityFrameworkCore.PostgreSQL.Query;
 /// <remarks>
 /// See: https://www.postgresql.org/docs/current/static/functions-net.html
 /// </remarks>
+[SkipForCockroachDb]
 public class NetworkQueryNpgsqlTest : IClassFixture<NetworkQueryNpgsqlTest.NetworkAddressQueryNpgsqlFixture>
 {
     private NetworkAddressQueryNpgsqlFixture Fixture { get; }
@@ -28,7 +29,7 @@ public class NetworkQueryNpgsqlTest : IClassFixture<NetworkQueryNpgsqlTest.Netwo
 
     #region BugTests
 
-    [Fact]
+    [ConditionalFact]
     public void Demonstrate_ValueTypeParametersAreDuplicated()
     {
         using var context = CreateContext();
@@ -54,7 +55,7 @@ WHERE n."Cidr" >>= @__p_1
 
     #region ParseTests
 
-    [Fact]
+    [ConditionalFact]
     public void IPAddress_inet_parse_column()
     {
         using var context = CreateContext();
@@ -69,7 +70,7 @@ WHERE n."Inet" = n."TextInet"::inet OR (n."Inet" IS NULL AND n."TextInet" IS NUL
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void PhysicalAddress_macaddr_parse_column()
     {
         using var context = CreateContext();
@@ -84,7 +85,7 @@ WHERE n."Macaddr" = n."TextMacaddr"::macaddr OR (n."Macaddr" IS NULL AND n."Text
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void IPAddress_inet_parse_literal()
     {
         using var context = CreateContext();
@@ -99,7 +100,7 @@ WHERE n."Inet" = INET '192.168.1.2'
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void PhysicalAddress_macaddr_parse_literal()
     {
         using var context = CreateContext();
@@ -114,7 +115,7 @@ WHERE n."Macaddr" = MACADDR '123456000002'
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void IPAddress_inet_parse_parameter()
     {
         using var context = CreateContext();
@@ -124,7 +125,7 @@ WHERE n."Macaddr" = MACADDR '123456000002'
         Assert.Equal(1, count);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void PhysicalAddress_macaddr_parse_parameter()
     {
         using var context = CreateContext();
@@ -138,6 +139,7 @@ WHERE n."Macaddr" = MACADDR '123456000002'
 
     #region RelationalOperatorTests
 
+    [ConditionalFact]
     [Fact]
     public void LessThan_IPAddress()
     {
@@ -153,6 +155,7 @@ WHERE n."Inet" < INET '192.168.1.7'
 """);
     }
 
+    [ConditionalFact]
     [Fact]
     public void LessThan_NpgsqlCidr()
     {
@@ -172,6 +175,7 @@ WHERE n."Cidr" < @__p_1
 """);
     }
 
+    [ConditionalFact]
     [Fact]
     public void LessThan_PhysicalAddress()
     {
@@ -203,6 +207,7 @@ WHERE n."Macaddr8" < MACADDR8 '08002B0102030407'
 """);
     }
 
+    [ConditionalFact]
     [Fact]
     public void LessThanOrEqual_IPAddress()
     {
@@ -218,6 +223,7 @@ WHERE n."Inet" <= INET '192.168.1.7'
 """);
     }
 
+    [ConditionalFact]
     [Fact]
     public void LessThanOrEqual_NpgsqlCidr()
     {
@@ -237,6 +243,7 @@ WHERE n."Cidr" <= @__p_1
 """);
     }
 
+    [ConditionalFact]
     [Fact]
     public void LessThanOrEqual_PhysicalAddress()
     {
@@ -268,6 +275,7 @@ WHERE n."Macaddr8" <= MACADDR8 '08002B0102030407'
 """);
     }
 
+    [ConditionalFact]
     [Fact]
     public void GreaterThanOrEqual_IPAddress()
     {
@@ -283,6 +291,7 @@ WHERE n."Inet" >= INET '192.168.1.7'
 """);
     }
 
+    [ConditionalFact]
     [Fact]
     public void GreaterThanOrEqual_NpgsqlCidr()
     {
@@ -302,6 +311,7 @@ WHERE n."Cidr" >= @__p_1
 """);
     }
 
+    [ConditionalFact]
     [Fact]
     public void GreaterThanOrEqual_PhysicalAddress()
     {
