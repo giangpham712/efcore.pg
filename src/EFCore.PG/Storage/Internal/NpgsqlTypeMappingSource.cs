@@ -59,6 +59,7 @@ public class NpgsqlTypeMappingSource : RelationalTypeMappingSource
     private readonly IReadOnlyList<UserRangeDefinition> _userRangeDefinitions;
 
     private readonly bool _supportsMultiranges;
+    private readonly bool _isCockroachDb;
 
     #region Mappings
 
@@ -172,6 +173,14 @@ public class NpgsqlTypeMappingSource : RelationalTypeMappingSource
     // ReSharper disable once InconsistentNaming
     public readonly StringTypeMapping EStringTypeMapping  = new NpgsqlEStringTypeMapping();
 
+    /// <summary>
+    ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+    ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+    ///     any release. You should only use it directly in your code with extreme caution and knowing that
+    ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+    /// </summary>
+    public bool IsCockroachDb => _isCockroachDb;
+
     #endregion Mappings
 
     /// <summary>
@@ -189,6 +198,8 @@ public class NpgsqlTypeMappingSource : RelationalTypeMappingSource
     {
         _supportsMultiranges = !options.IsPostgresVersionSet
             || options.IsPostgresVersionSet && options.PostgresVersion.AtLeast(14);
+
+        _isCockroachDb = options.UseCockroachDb;
 
         _sqlGenerationHelper = Check.NotNull(sqlGenerationHelper, nameof(sqlGenerationHelper));
 
@@ -293,6 +304,7 @@ public class NpgsqlTypeMappingSource : RelationalTypeMappingSource
 
             { "regdictionary",               new[] { _regdictionary                } }
         };
+
 // ReSharper restore CoVariantArrayConversion
 
         // Set up aliases
@@ -300,6 +312,11 @@ public class NpgsqlTypeMappingSource : RelationalTypeMappingSource
         storeTypeMappings["timestamptz"] = storeTypeMappings["timestamp with time zone"];
         storeTypeMappings["time"] = storeTypeMappings["time without time zone"];
         storeTypeMappings["timetz"] = storeTypeMappings["time with time zone"];
+
+        if (_isCockroachDb)
+        {
+            storeTypeMappings["json"] = storeTypeMappings["jsonb"];
+        }
 
         var clrTypeMappings = new Dictionary<Type, RelationalTypeMapping>
         {
@@ -468,7 +485,7 @@ public class NpgsqlTypeMappingSource : RelationalTypeMappingSource
                 // Map arbitrary user POCOs to JSON
                 if (storeTypeName is "jsonb" or "json")
                 {
-                    return new NpgsqlJsonTypeMapping(storeTypeName, clrType);
+                    return new NpgsqlJsonTypeMapping(_isCockroachDb ? "jsonb" : storeTypeName , clrType);
                 }
 
                 return null;
@@ -562,7 +579,7 @@ public class NpgsqlTypeMappingSource : RelationalTypeMappingSource
                 return mapping;
             }
 
-            if (mappingInfo.IsRowVersion == true)
+            if (mappingInfo.IsRowVersion == true && !_isCockroachDb)
             {
                 if (clrType == typeof(uint))
                 {
