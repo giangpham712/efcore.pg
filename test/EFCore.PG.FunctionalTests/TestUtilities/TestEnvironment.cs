@@ -26,6 +26,12 @@ public static class TestEnvironment
             .GetSection(sectionName);
 
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
+        // CockroachDB doesn't truly support infinity, https://github.com/cockroachdb/cockroach/issues/41564
+        if (IsCockroachDB)
+        {
+            AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
+        }
     }
 
     private const string DefaultConnectionString = "Server=localhost;Username=npgsql_tests;Password=npgsql_tests;Port=5432";
