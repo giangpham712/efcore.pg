@@ -140,7 +140,6 @@ WHERE n."Macaddr" = MACADDR '123456000002'
     #region RelationalOperatorTests
 
     [ConditionalFact]
-    [Fact]
     public void LessThan_IPAddress()
     {
         using var context = CreateContext();
@@ -156,7 +155,6 @@ WHERE n."Inet" < INET '192.168.1.7'
     }
 
     [ConditionalFact]
-    [Fact]
     public void LessThan_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -176,7 +174,6 @@ WHERE n."Cidr" < @__p_1
     }
 
     [ConditionalFact]
-    [Fact]
     public void LessThan_PhysicalAddress()
     {
         using var context = CreateContext();
@@ -208,7 +205,6 @@ WHERE n."Macaddr8" < MACADDR8 '08002B0102030407'
     }
 
     [ConditionalFact]
-    [Fact]
     public void LessThanOrEqual_IPAddress()
     {
         using var context = CreateContext();
@@ -224,7 +220,6 @@ WHERE n."Inet" <= INET '192.168.1.7'
     }
 
     [ConditionalFact]
-    [Fact]
     public void LessThanOrEqual_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -244,7 +239,6 @@ WHERE n."Cidr" <= @__p_1
     }
 
     [ConditionalFact]
-    [Fact]
     public void LessThanOrEqual_PhysicalAddress()
     {
         using var context = CreateContext();
@@ -276,7 +270,6 @@ WHERE n."Macaddr8" <= MACADDR8 '08002B0102030407'
     }
 
     [ConditionalFact]
-    [Fact]
     public void GreaterThanOrEqual_IPAddress()
     {
         using var context = CreateContext();
@@ -292,7 +285,6 @@ WHERE n."Inet" >= INET '192.168.1.7'
     }
 
     [ConditionalFact]
-    [Fact]
     public void GreaterThanOrEqual_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -312,7 +304,6 @@ WHERE n."Cidr" >= @__p_1
     }
 
     [ConditionalFact]
-    [Fact]
     public void GreaterThanOrEqual_PhysicalAddress()
     {
         using var context = CreateContext();
@@ -343,7 +334,7 @@ WHERE n."Macaddr8" >= MACADDR8 '08002B0102030407'
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void GreaterThan_IPAddress()
     {
         using var context = CreateContext();
@@ -358,7 +349,7 @@ WHERE n."Inet" > INET '192.168.1.7'
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void GreaterThan_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -377,7 +368,7 @@ WHERE n."Cidr" > @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void GreaterThan_PhysicalAddress()
     {
         using var context = CreateContext();
