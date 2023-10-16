@@ -403,7 +403,7 @@ WHERE n."Macaddr8" > MACADDR8 '08002B0102030407'
 
     #region ContainmentOperatorTests
 
-    [Fact]
+    [ConditionalFact]
     public void ContainedBy_IPAddress_and_IPAddress()
     {
         using var context = CreateContext();
@@ -422,7 +422,7 @@ WHERE n."Inet" << @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainedBy_IPAddress_and_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -441,7 +441,7 @@ WHERE n."Inet" << @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainedBy_NpgsqlCidr_and_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -460,7 +460,7 @@ WHERE n."Cidr" << @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainedByOrEqual_IPAddress_and_IPAddress()
     {
         using var context = CreateContext();
@@ -479,7 +479,7 @@ WHERE n."Inet" <<= @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainedByOrEqual_IPAddress_and_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -498,7 +498,7 @@ WHERE n."Inet" <<= @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainedByOrEqual_NpgsqlCidr_and_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -517,7 +517,7 @@ WHERE n."Cidr" <<= @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Contains_IPAddress_and_IPAddress()
     {
         using var context = CreateContext();
@@ -536,7 +536,7 @@ WHERE n."Inet" >> @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Contains_NpgsqlCidr_and_IPAddress()
     {
         using var context = CreateContext();
@@ -555,7 +555,7 @@ WHERE n."Cidr" >> @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Contains_NpgsqlCidr_and_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -574,7 +574,7 @@ WHERE n."Cidr" >> @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainsOrEqual_IPAddress_and_IPAddress()
     {
         using var context = CreateContext();
@@ -593,7 +593,7 @@ WHERE n."Inet" >>= @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainsOrEqual_NpgsqlCidr_and_IPAddress()
     {
         using var context = CreateContext();
@@ -612,7 +612,7 @@ WHERE n."Cidr" >>= @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainsOrEqual_NpgsqlCidr_and_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -631,7 +631,7 @@ WHERE n."Cidr" >>= @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainsOrContainedBy_IPAddress_and_IPAddress()
     {
         using var context = CreateContext();
@@ -650,7 +650,7 @@ WHERE n."Inet" && @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainsOrContainedBy_IPAddress_and_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -669,7 +669,7 @@ WHERE n."Inet" && @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainsOrContainedBy_NpgsqlCidr_and_IPAddress()
     {
         using var context = CreateContext();
@@ -688,7 +688,7 @@ WHERE n."Cidr" && @__p_1
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void ContainsOrContainedBy_NpgsqlCidr_and_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -711,7 +711,7 @@ WHERE n."Cidr" && @__p_1
 
     #region BitwiseOperatorTests
 
-    [Fact]
+    [ConditionalFact]
     public void BitwiseNot_IPAddress()
     {
         using var context = CreateContext();
@@ -726,7 +726,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void BitwiseNot_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -741,7 +741,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void BitwiseNot_PhysicalAddress()
     {
         using var context = CreateContext();
@@ -772,7 +772,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void BitwiseAnd_IPAddress()
     {
         using var context = CreateContext();
@@ -790,7 +790,7 @@ WHERE n."Inet" = n."Inet" & @__p_1 OR n."Inet" IS NULL
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void BitwiseAnd_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -808,7 +808,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void BitwiseAnd_PhysicalAddress()
     {
         using var context = CreateContext();
@@ -842,7 +842,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void BitwiseOr_IPAddress()
     {
         using var context = CreateContext();
@@ -860,7 +860,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void BitwiseOr_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -878,7 +878,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void BitwiseOr_PhysicalAddress()
     {
         using var context = CreateContext();
@@ -916,7 +916,7 @@ FROM "NetTestEntities" AS n
 
     #region ArithmeticOperatorTests
 
-    [Fact]
+    [ConditionalFact]
     public void Add_IPAddress_and_int()
     {
         using var context = CreateContext();
@@ -932,7 +932,7 @@ LIMIT 2
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Add_NpgsqlCidr_and_int()
     {
         using var context = CreateContext();
@@ -947,7 +947,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Subtract_IPAddress_and_int()
     {
         using var context = CreateContext();
@@ -963,7 +963,7 @@ LIMIT 2
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Subtract_NpgsqlCidr_and_int()
     {
         using var context = CreateContext();
@@ -978,7 +978,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Subtract_IPAddress_and_IPAddress()
     {
         using var context = CreateContext();
@@ -996,7 +996,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Subtract_NpgsqlCidr_and_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1018,7 +1018,7 @@ FROM "NetTestEntities" AS n
 
     #region FunctionTests
 
-    [Fact]
+    [ConditionalFact]
     public void Abbreviate_IPAddress()
     {
         using var context = CreateContext();
@@ -1033,7 +1033,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Abbreviate_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1048,7 +1048,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Broadcast_IPAddress()
     {
         using var context = CreateContext();
@@ -1063,7 +1063,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Broadcast_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1078,7 +1078,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Family_IPAddress()
     {
         using var context = CreateContext();
@@ -1093,7 +1093,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Family_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1108,7 +1108,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Host_IPAddress()
     {
         using var context = CreateContext();
@@ -1123,7 +1123,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Host_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1138,7 +1138,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void HostMask_IPAddress()
     {
         using var context = CreateContext();
@@ -1153,7 +1153,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void HostMask_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1168,7 +1168,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void MaskLength_IPAddress()
     {
         using var context = CreateContext();
@@ -1183,7 +1183,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void MaskLength_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1198,7 +1198,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Netmask_IPAddress()
     {
         using var context = CreateContext();
@@ -1213,7 +1213,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Netmask_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1228,7 +1228,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Network_IPAddress()
     {
         using var context = CreateContext();
@@ -1243,7 +1243,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Network_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1258,7 +1258,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void SetMaskLength_IPAddress()
     {
         using var context = CreateContext();
@@ -1273,7 +1273,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void SetMaskLength_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1288,7 +1288,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Text_IPAddress()
     {
         using var context = CreateContext();
@@ -1303,7 +1303,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Text_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1318,7 +1318,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void SameFamily_IPAddress()
     {
         using var context = CreateContext();
@@ -1336,7 +1336,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void SameFamily_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1354,7 +1354,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Merge_IPAddress()
     {
         using var context = CreateContext();
@@ -1372,7 +1372,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Merge_NpgsqlCidr()
     {
         using var context = CreateContext();
@@ -1390,7 +1390,7 @@ FROM "NetTestEntities" AS n
 """);
     }
 
-    [Fact]
+    [ConditionalFact]
     public void Truncate_PhysicalAddress()
     {
         using var context = CreateContext();
