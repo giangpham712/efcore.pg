@@ -140,18 +140,6 @@ WHERE c."CustomerID" = ANY (@__Select_0)
         return base.Average_over_nested_subquery_is_client_eval(async);
     }
 
-    [SkipForCockroachDb("https://github.com/cockroachdb/cockroach/issues/110618")]
-    public override Task Sum_on_float_column(bool async)
-    {
-        return base.Sum_on_float_column(async);
-    }
-
-    [SkipForCockroachDb("https://github.com/cockroachdb/cockroach/issues/110618")]
-    public override Task Sum_on_float_column_in_subquery(bool async)
-    {
-        return base.Sum_on_float_column_in_subquery(async);
-    }
-
     private void AssertSql(params string[] expected)
         => Fixture.TestSqlLoggerFactory.AssertBaseline(expected);
 
