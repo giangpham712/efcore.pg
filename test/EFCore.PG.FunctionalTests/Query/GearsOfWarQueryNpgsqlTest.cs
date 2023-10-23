@@ -484,7 +484,6 @@ WHERE date_part('year', m."Date")::int = 1990
 """);
     }
 
-    [SkipForCockroachDb("CockroachDB doesn't truly support infinity, https://github.com/cockroachdb/cockroach/issues/41564")]
     public override async Task Where_DateOnly_Month(bool async)
     {
         await AssertQuery(
@@ -499,8 +498,7 @@ FROM "Missions" AS m
 WHERE date_part('month', m."Date")::int = 11
 """);
     }
-
-    [SkipForCockroachDb("CockroachDB doesn't truly support infinity, https://github.com/cockroachdb/cockroach/issues/41564")]
+    
     public override async Task Where_DateOnly_Day(bool async)
     {
         await AssertQuery(
@@ -516,7 +514,6 @@ WHERE date_part('day', m."Date")::int = 10
 """);
     }
 
-    [SkipForCockroachDb("CockroachDB doesn't truly support infinity, https://github.com/cockroachdb/cockroach/issues/41564")]
     public override async Task Where_DateOnly_DayOfYear(bool async)
     {
         await AssertQuery(
@@ -532,7 +529,6 @@ WHERE date_part('doy', m."Date")::int = 314
 """);
     }
 
-    [SkipForCockroachDb("CockroachDB doesn't truly support infinity, https://github.com/cockroachdb/cockroach/issues/41564")]
     public override async Task Where_DateOnly_DayOfWeek(bool async)
     {
         await AssertQuery(
@@ -548,7 +544,6 @@ WHERE floor(date_part('dow', m."Date"))::int = 6
 """);
     }
 
-    [SkipForCockroachDb("CockroachDB doesn't truly support infinity, https://github.com/cockroachdb/cockroach/issues/41564")]
     public override async Task Where_DateOnly_AddYears(bool async)
     {
         await AssertQuery(
@@ -564,7 +559,6 @@ WHERE m."Date" + INTERVAL '3 years' = DATE '1993-11-10'
 """);
     }
 
-    [SkipForCockroachDb("CockroachDB doesn't truly support infinity, https://github.com/cockroachdb/cockroach/issues/41564")]
     public override async Task Where_DateOnly_AddMonths(bool async)
     {
         await AssertQuery(
@@ -580,7 +574,6 @@ WHERE m."Date" + INTERVAL '3 months' = DATE '1991-02-10'
 """);
     }
 
-    [SkipForCockroachDb("CockroachDB doesn't truly support infinity, https://github.com/cockroachdb/cockroach/issues/41564")]
     public override async Task Where_DateOnly_AddDays(bool async)
     {
         await AssertQuery(
@@ -761,12 +754,6 @@ WHERE m."Time"::interval = INTERVAL '15:30:10'
     #endregion TimeOnly
 
     #region Skip for CockroachDB
-
-    [SkipForCockroachDb("CockroachDB doesn't truly support infinity, https://github.com/cockroachdb/cockroach/issues/41564")]
-    public override Task FirstOrDefault_on_empty_collection_of_DateTime_in_subquery(bool async)
-    {
-        return base.FirstOrDefault_on_empty_collection_of_DateTime_in_subquery(async);
-    }
 
     [SkipForCockroachDb("https://github.com/cockroachdb/cockroach/issues/110785")]
     public override Task Select_null_propagation_negative4(bool async)
