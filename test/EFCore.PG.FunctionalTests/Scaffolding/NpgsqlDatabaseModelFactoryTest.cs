@@ -26,7 +26,7 @@ public class NpgsqlDatabaseModelFactoryTest : IClassFixture<NpgsqlDatabaseModelF
 
     #region Sequences
 
-    [SkipForCockroachDb("CYCLE option is not yet supported by CockroachDB")]
+    [SkipForCockroachDb("CockroachDB doesn't support CYCLE option")]
     [ConditionalFact]
     public void Create_sequences_with_facets()
     {
@@ -1045,7 +1045,7 @@ CREATE TABLE "NullableColumns" (
             },
             @"DROP TABLE ""NullableColumns""");
 
-    [SkipForCockroachDb("DOMAIN is not yet supported by CockroachDB")]
+    [SkipForCockroachDb("CockroachDB doesn't support DOMAIN, https://github.com/cockroachdb/cockroach/issues/27796")]
     [ConditionalFact]
     public void Column_nullability_is_set_with_domain()
         => Test(
@@ -1670,7 +1670,7 @@ CREATE TABLE identity (
             },
             "DROP TABLE identity");
 
-    [SkipForCockroachDb("CYCLE option is not yet supported by CockroachDB")]
+    [SkipForCockroachDb("CockroachDB doesn't support CYCLE option")]
     [ConditionalFact]
     [MinimumPostgresVersion(10, 0)]
     public void Identity_with_sequence_options_all()
@@ -1830,7 +1830,7 @@ CREATE INDEX ix_without ON "IndexCollation" (a, b);
             @"DROP TABLE ""IndexCollation""");
 
 
-    [SkipForCockroachDb("CockroachDB doesn't yet support brin, btree")]
+    [SkipForCockroachDb("CockroachDB doesn't support brin, btree")]
     [ConditionalTheory]
     [InlineData("gin", new bool[0])]
     [InlineData("gist", new bool[0])]
@@ -2011,7 +2011,7 @@ ALTER TABLE foo ADD COLUMN id2 int PRIMARY KEY;
             },
             "DROP TABLE foo");
 
-    [SkipForCockroachDb("hstore is not yet supported by CockroachDB")]
+    [SkipForCockroachDb("CockroachDB doesn't support hstore, https://github.com/cockroachdb/cockroach/issues/41284")]
     [ConditionalFact]
     public void Postgres_extensions()
         => Test(
