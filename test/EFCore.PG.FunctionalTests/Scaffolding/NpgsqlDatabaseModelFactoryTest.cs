@@ -741,7 +741,6 @@ CREATE TABLE "NumericColumns" (
             },
             @"DROP TABLE ""NumericColumns""");
 
-    [SkipForCockroachDb("https://github.com/cockroachdb/cockroach/issues/110539")]
     [ConditionalFact]
     public void Specific_max_length_are_add_to_store_type()
         => Test(
