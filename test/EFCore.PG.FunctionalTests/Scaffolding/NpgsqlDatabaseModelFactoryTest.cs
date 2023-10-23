@@ -771,7 +771,6 @@ CREATE TABLE "LengthColumns" (
             },
             @"DROP TABLE ""LengthColumns""");
 
-    [SkipForCockroachDb("https://github.com/cockroachdb/cockroach/issues/110787")]
     [ConditionalFact]
     public void Datetime_types_have_precision_if_non_null_scale()
         => Test(
