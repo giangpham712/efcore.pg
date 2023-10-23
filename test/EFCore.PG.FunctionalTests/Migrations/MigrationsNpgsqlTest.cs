@@ -2284,7 +2284,7 @@ DROP SEQUENCE "People_Id_old_seq";
     // so we test support for this on the generated SQL only, in NpgsqlMigrationSqlGeneratorTest, and not against
     // the database here.
 
-    [SkipForCockroachDb("CockroachDB doesn't support NULLS LAST modifier, https://github.com/cockroachdb/cockroach/issues/6224")]
+    [SkipForCockroachDb("CockroachDB doesn't support NULLS LAST modifier for index, https://github.com/cockroachdb/cockroach/issues/6224")]
     [ConditionalFact]
     public virtual async Task Create_index_with_null_sort_order()
     {
@@ -2786,7 +2786,6 @@ WHERE "Id" = 2;
 """);
     }
 
-    [SkipForCockroachDb()]
     [ConditionalFact]
     public virtual async Task InsertDataOperation_restarts_identity()
     {
